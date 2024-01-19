@@ -47,7 +47,7 @@ debian bash -c "yes | apt install fish"
 debian bash -c "yes | apt autoremove"
 debian fish -c 'set -U fish_greeting -e "\nWelcome to Debian (testing)\n"'
 debian chsh -s /usr/bin/fish
-
+debian bash -c "yes | apt install npm python3-pip"
 #Misc
 rm ../usr/etc/motd
 
