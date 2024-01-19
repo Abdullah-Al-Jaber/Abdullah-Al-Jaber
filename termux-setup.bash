@@ -35,8 +35,9 @@ fish -c "fish_add_path ./usr-bin"
 echo -e "\nSetting up Debian Distro ...\n"
 
 proot-distro install debian
+ln -s /storage/emulated/0 ./android
 touch ./usr-bin/debian
-echo 'proot-distro login --bind /storage/emulated/0/:/root/android debian -- "$@" '>> ./usr-bin/debian
+echo 'proot-distro login --bind ~/android:/root/android debian -- "$@" '>> ./usr-bin/debian
 chmod +x ./usr-bin/debian
 
 debian 
