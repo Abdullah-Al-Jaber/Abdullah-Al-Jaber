@@ -38,13 +38,13 @@ echo 'proot-distro login --bind ~/android:/root/android debian -- "$@" '>> ./usr
 chmod +x ./usr-bin/debian
 
 debian sed -i 's/^/#/' /etc/apt/sources.list
-debian echo 'deb [signed-by="/usr/share/keyrings/debian-archive-keyring.gpg"] http://deb.debian.org/debian testing main contrib non-free' >> /etc/apt/sources.list
+debian echo 'deb [signed-by="/usr/share/keyrings/debian-archive-keyring.gpg"] http://deb.debian.org/debian testing main contrib non-free' ^>^> /etc/apt/sources.list
 debian apt clean
 debian apt update
 debian apt upgrade -y
-debian apt install -y fish npm pip python
+debian apt install -y fish npm 
 debian apt autoremove -y
-debian fish -c "set -U fish_greeting -e '\nWelcome to Debian (testing)\n'"
+debian fish -c "set -U fish_greeting -e '\nWelcome to Debian\n'"
 debian chsh -s /usr/bin/fish
 
 #Misc
