@@ -22,7 +22,7 @@ cd ~
 chsh -s fish
 echo "starship init fish | source" >> ./.config/fish/config.fish
 
-fish -c "fish_greeting -U "
+fish -c "set -U fish_greeting "
 
 #User Bin Folder 
 mkdir ./usr-bin
