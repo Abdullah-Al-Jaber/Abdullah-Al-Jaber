@@ -2,7 +2,7 @@
 
 # Variable declaration
 ver="1.0.0"
-pwd= pwd
+pwd=pwd
 
 # Start up
 echo -e "\n# Termux Setup Script v$ver\n\n"
