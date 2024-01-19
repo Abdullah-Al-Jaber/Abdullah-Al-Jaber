@@ -20,7 +20,7 @@ cd ~
 #Fish
 
 chsh -s fish
-echo "starship init fish | source" >> ./.config/fish/config.fish
+fish -c 'echo "starship init fish | source" >> ./.config/fish/config.fish'
 
 fish -c "set -U fish_greeting "
 
