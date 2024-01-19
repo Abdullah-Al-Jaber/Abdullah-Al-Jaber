@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variable declaration
-ver="2.0.0"
+ver="1.0.0"
 pwd=${pwd}
 
 # Start up
