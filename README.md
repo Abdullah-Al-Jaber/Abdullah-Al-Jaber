@@ -1,6 +1,5 @@
-### Hi there 👋
+### **_Hi there 👋_**
 
-## Good Morning 
 <!--
 **abdullah-al-jaber/abdullah-al-jaber** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
