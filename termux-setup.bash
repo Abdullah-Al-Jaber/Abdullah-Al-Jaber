@@ -35,7 +35,7 @@ proot-distro install debian
 rm ./usr-bin/debian
 ln -s /storage/emulated/0 ./android
 touch ./usr-bin/debian
-echo 'proot-distro login --bind ~/android:/root/android debian -- "$@" '>> ./usr-bin/debian
+echo 'proot-distro login --bind ~/android:/root/android debian -- "$@" ' >> ./usr-bin/debian
 chmod +x ./usr-bin/debian
 
 debian sed -i 's/^/#/' /etc/apt/sources.list
