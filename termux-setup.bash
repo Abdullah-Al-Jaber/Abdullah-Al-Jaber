@@ -24,8 +24,14 @@ echo "starship init fish | source" >> ./config/fish/config.fish
 
 fish -c "fish_greeting -U "
 
+#User Bin Folder 
+mkdir ./usr-bin
+fish -c "fish_add_path ./usr-bin"
+
+
 #Misc
 rm ../usr/etc/motd
+
 
 
 cd $pwd
