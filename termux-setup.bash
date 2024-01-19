@@ -40,7 +40,13 @@ touch ./usr-bin/debian
 echo 'proot-distro login --bind ~/android:/root/android debian -- "$@" '>> ./usr-bin/debian
 chmod +x ./usr-bin/debian
 
-debian 
+debian sed -i 's/^/#/' /etc/apt/sources.list
+debian echo 'deb [signed-by="/usr/share/keyrings/debian-archive-keyring.gpg"] http://deb.debian.org/debian testing main contrib non-free' >> /etc/apt/sources.list
+debian apt update
+debian apt upgrade -y
+debian apt install -y fish npm 
+debian chsh -s /usr/bin/fish
+debian fish -c "set -U fish_greeting -e '\nWelcome to Debian (testing)\n'"
 
 echo -e "\nFinished Setting up Debian Distro. \n"
 
