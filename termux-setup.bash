@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variable declaration
-ver="1.0.1"
+ver="2.0.0"
 pwd=${pwd}
 
 # Start up
@@ -38,7 +38,7 @@ echo 'proot-distro login --bind ~/android:/root/android debian -- "$@" '>> ./usr
 chmod +x ./usr-bin/debian
 
 debian sed -i 's/^/#/' /etc/apt/sources.list
-debian echo 'deb [signed-by="/usr/share/keyrings/debian-archive-keyring.gpg"] http://deb.debian.org/debian testing main contrib non-free' ^>^> /etc/apt/sources.list
+debian bash -c 'echo deb [signed-by="/usr/share/keyrings/debian-archive-keyring.gpg"] http://deb.debian.org/debian testing main contrib non-free >> /etc/apt/sources.list'
 debian apt clean
 debian apt update
 debian apt upgrade -y
