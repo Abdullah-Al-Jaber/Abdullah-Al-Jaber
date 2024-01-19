@@ -45,7 +45,7 @@ debian apt update
 debian bash -c "yes | apt upgrade"
 debian bash -c "yes | apt install fish"
 debian bash -c "yes | apt autoremove"
-debian fish -c "set -U fish_greeting -e '\nWelcome to Debian\n'"
+debian fish -c 'set -U fish_greeting -e "\nWelcome to Debian (testing)\n"'
 debian chsh -s /usr/bin/fish
 
 #Misc
