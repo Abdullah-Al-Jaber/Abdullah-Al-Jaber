@@ -11,7 +11,7 @@ apt update
 yes | pkg upgrade
 
 # Install Package 
-yes | pkg install fish starship proot-distro 
+yes | pkg install fish starship proot-distro wget curl
 
 cd ~
 
