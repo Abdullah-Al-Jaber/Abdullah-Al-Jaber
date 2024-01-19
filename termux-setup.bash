@@ -39,6 +39,7 @@ ln -s /storage/emulated/0 ./android
 touch ./usr-bin/debian
 echo 'proot-distro login --bind ~/android:/root/android debian -- "$@" '>> ./usr-bin/debian
 chmod +x ./usr-bin/debian
+export PATH=$PATH:~/user-bin
 
 debian sed -i 's/^/#/' /etc/apt/sources.list
 debian echo 'deb [signed-by="/usr/share/keyrings/debian-archive-keyring.gpg"] http://deb.debian.org/debian testing main contrib non-free' >> /etc/apt/sources.list
