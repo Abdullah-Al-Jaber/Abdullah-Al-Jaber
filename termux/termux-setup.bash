@@ -3,6 +3,7 @@
 # Variable declaration
 ver="1.0.0"
 pwd=${pwd}
+pkg=$1
 
 # Start up
 echo -e "\n# Termux Setup Script v$ver\n\n"
@@ -47,7 +48,7 @@ debian bash -c "yes | apt install fish"
 debian bash -c "yes | apt autoremove"
 debian fish -c 'set -U fish_greeting -e "\nWelcome to Debian (testing)\n"'
 debian chsh -s /usr/bin/fish
-debian bash -c "yes | apt install npm python3-pip ranger"
+debian bash -c "yes | apt install npm python3-pip ranger $pkg"
 #Misc
 rm ../usr/etc/motd
 
