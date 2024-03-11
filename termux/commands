@@ -1,1 +1,7 @@
+#!/data/data/com.termux/files/usr/bin/bash
 
+## Commands to copy & paste
+
+# Run Script
+
+apt update && yes | pkg install wget && read -p "Enter script name : " script && wget https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/termux/scripts/$script && chmod +x ./$script && ./$script
