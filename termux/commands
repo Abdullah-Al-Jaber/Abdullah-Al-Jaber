@@ -2,8 +2,8 @@
 
 ## Commands to copy & paste
 
-# Run Script from my GitHub
+# Download Script from my GitHub
 
-bash -c 'apt update && yes | pkg install wget && read -p "Enter script name : " script && wget https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/termux/scripts/$script && chmod +x ./$script && ./$script'
+bash -c 'read -p "Enter Script Name : " script && apt update && yes | pkg install wget && wget https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/termux/scripts/$script && chmod +x ./$script'
 
 ## Use it as you wish
