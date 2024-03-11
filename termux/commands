@@ -4,6 +4,6 @@
 
 # Run Script from my GitHub
 
-bash -c "apt update && yes | pkg install wget && read -p "Enter script name : " script && wget https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/termux/scripts/$script && chmod +x ./$script && ./$script"
+bash -c 'apt update && yes | pkg install wget && read -p "Enter script name : " script && wget https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/termux/scripts/$script && chmod +x ./$script && ./$script'
 
 ## Use it as you wish
