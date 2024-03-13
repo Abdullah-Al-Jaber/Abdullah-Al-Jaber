@@ -12,4 +12,4 @@ yes | pkg upgrade > ./log.txt
 
 echo -e "Installing packages ..."
 echo -e "\n[ Additional Packages]\n" > ./log.txt
-yes | pkg upgrade > ./log.txt
+yes | pkg install fish proot-distro starship > ./log.txt
