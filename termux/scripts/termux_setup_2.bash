@@ -9,3 +9,7 @@ yes | apt update > ./log.txt
 echo -e "Upgrading packages ..."
 echo -e "\n[ Package Upgrade ]\n" > ./log.txt
 yes | pkg upgrade > ./log.txt
+
+echo -e "Installing packages ..."
+echo -e "\n[ Additional Packages]\n" > ./log.txt
+yes | pkg upgrade > ./log.txt
