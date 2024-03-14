@@ -1,5 +1,7 @@
 ### **_Hi there 👋_**
 
+This is my personal repo for "random things i would like to upload".
+
 Darker 6.0.0 modded for pro version
 (pro version unlocked)
 
