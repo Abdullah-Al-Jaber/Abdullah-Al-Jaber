@@ -8,18 +8,18 @@ PACKAGES_1="fish starship proot-distro wget curl"
 PACKAGES_2=""
 
 # Styles 
-BOLD=$(tput bold)
-UNDERLINE=$(tput smul)
+BOLD="\e[1m"
+UNDERLINE="\e[4m"
 
-RED=$(tput setaf 1)
-GREEN=$(tput setaf 2)
-YELLOW=$(tput setaf 3)
-BLUE=$(tput setaf 4)
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+BLUE="\e[34m"
 
-SPECIAL_COLOR="$(tput setaf 4)$(tput setab 1)"
+SPECIAL_COLOR="\e[34m\e[47m"
 
 TITLE="$SPECIAL_COLOR$BOLD$UNDERLINE"
-RESET=$(tput sgr0)
+RESET="\e[0m"
 
 echo -e "$TITLE\n# Termux Setup Script #\n$RESET"
 
