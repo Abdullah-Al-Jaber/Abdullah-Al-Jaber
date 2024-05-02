@@ -111,7 +111,7 @@ wait_before_execute 'silent_log "setup_fish" "misc"' 'Setting Fish Shell'
 wait_before_execute 'silent_log "setup_bin" "misc"' 'Setting Up User Bin Folder'
 
 wait_before_execute 'silent_log "setup_other" "misc"' 'Setting Up New Debian'
-wait_before_execute 'silent_log "setup_debian" "misc"' 'Setting Up Debian Tweeks'
+wait_before_execute 'silent_log "setup_debian" "debian"' 'Setting Up Debian Tweeks'
 cd $PWD || exit
 
 echo -e "\n# $GREEN Finished Setup $RESET #\n"
