@@ -18,7 +18,7 @@ BLUE="\e[34m"
 
 SPECIAL_COLOR="\e[34m\e[47m"
 
-TITLE="$SPECIAL_COLOR$BOLD$UNDERLINE"
+TITLE="$SPECIAL_COLOR$BOLD"
 RESET="\e[0m"
 
 echo -e "$TITLE\n# Termux Setup Script #\n$RESET"
@@ -45,7 +45,7 @@ function wait_before_execute () {
   echo 
   while [ $count -gt -1 ]; do
     # read -t 1 -p "[ $YELLOW$BOLD$count$RESET ] $2"
-    echo -e "[ $YELLOW$BOLD$count$RESET ] $2"
+    echo -ne "[ $YELLOW$BOLD$count$RESET ] $2"
     read -r -t 1
     
     if [ $? -eq 0 ]; then
