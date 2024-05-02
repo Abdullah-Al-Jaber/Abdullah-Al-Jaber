@@ -45,8 +45,9 @@ function wait_before_execute () {
   echo 
   while [ $count -gt -1 ]; do
     # read -t 1 -p "[ $YELLOW$BOLD$count$RESET ] $2"
-    read -r -t 1 -p "[ $YELLOW$BOLD$count$RESET ] $2"
-
+    echo -e "[ $YELLOW$BOLD$count$RESET ] $2"
+    read -r -t 1
+    
     if [ $? -eq 0 ]; then
       echo -ne "${YELLOW}[ Skipped execution ]${RESET}"
       echo 
