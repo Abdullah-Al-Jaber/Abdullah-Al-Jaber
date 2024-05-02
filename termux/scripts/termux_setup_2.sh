@@ -16,7 +16,7 @@ GREEN="\e[32m"
 YELLOW="\e[33m"
 BLUE="\e[34m"
 
-SPECIAL_COLOR="\e[34m\e[47m"
+SPECIAL_COLOR="\e[37m"
 
 TITLE="$SPECIAL_COLOR$BOLD"
 RESET="\e[0m"
@@ -111,4 +111,4 @@ wait_before_execute 'silent_log "setup_other" "misc"' 'Setting Up New Debian'
 wait_before_execute 'silent_log "setup_debian" "debian"' 'Setting Up Debian Tweeks'
 cd $PWD || exit
 
-echo -e "\n# $GREEN Finished Setup $RESET #\n"
+echo -e "\n# $GREEN $BOLD Finished Setup $RESET #\n"
