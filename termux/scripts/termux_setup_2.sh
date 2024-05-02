@@ -102,7 +102,7 @@ debian bash -c "yes | apt install $PACKAGES_2"
 ## MAIN CODE
 cd ~ || exit
 wait_before_execute 'update_pkg' 'Update &  Upgrade Packages'
-wait_before_execute 'silent_log "pkg install $PACKAGES_1" "apt"' 'Installing Packages'
+wait_before_execute 'silent_log "yes | pkg install $PACKAGES_1" "apt"' 'Installing Packages'
 
 wait_before_execute 'silent_log "setup_fish" "misc"' 'Setting Fish Shell'
 wait_before_execute 'silent_log "setup_bin" "misc"' 'Setting Up User Bin Folder'
