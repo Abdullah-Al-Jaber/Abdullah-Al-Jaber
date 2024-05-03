@@ -102,7 +102,7 @@ wait_before_execute "setup_fish" "Setting up Fish Shell"
 wait_before_execute "setup_bin" "Setting up User Bin Folder"
 
 wait_before_execute "setup_other" "Install New Debian System "
-wait_before_execute "setup_debian" "Setting Up New Debian setting"
+wait_before_execute "setup_debian" "Setting Up New Debian System"
 cd "${PWD}" || exit
 
 echo -e "\n# $GREEN $BOLD Finished Setup $RESET #\n"
