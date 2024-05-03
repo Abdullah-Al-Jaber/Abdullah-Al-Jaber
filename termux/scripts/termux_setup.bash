@@ -4,7 +4,7 @@
 PWD=$(pwd)
 COUNTDOWN=5
 PACKAGES_1="fish starship proot-distro wget curl"
-PACKAGES_2=""
+PACKAGES_2="python3 python3-pip"
 
 # Styles 
 BOLD="\e[1m"
