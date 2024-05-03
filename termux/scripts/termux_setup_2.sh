@@ -97,13 +97,13 @@ cd ~ || exit
 echo -e "$YELLOW( Press enter to skip the step )$RESET"
 wait_before_execute "update_pkg" "Update &  Upgrade Packages"
 wait_before_execute "setup_fish"
-wait_before_execute "pkg install $PACKAGES_1" 'Installing Packages'
+wait_before_execute "pkg install $PACKAGES_1" "Installing Packages"
 
-wait_before_execute "setup_fish" 'Setting Fish Shell'
-wait_before_execute 'setup_bin' 'Setting Up User Bin Folder'
+wait_before_execute "setup_fish" "Setting Fish Shell"
+wait_before_execute "setup_bin" "Setting Up User Bin Folder"
 
-wait_before_execute 'setup_other' 'Setting Up New Debian'
-wait_before_execute 'setup_debian' 'Setting Up Debian Tweeks'
+wait_before_execute "setup_other" "Setting Up New Debian"
+wait_before_execute "setup_debian" "Setting Up Debian Tweeks"
 cd "${PWD}" || exit
 
 echo -e "\n# $GREEN $BOLD Finished Setup $RESET #\n"
