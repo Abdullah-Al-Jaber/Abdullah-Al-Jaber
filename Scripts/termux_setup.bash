@@ -88,6 +88,8 @@ function setup_debian() {
   debian bash -c "yes | apt autoremove"
   debian fish -c 'set -U fish_greeting -e "\nWelcome to Debian (testing)\n"'
   debian chsh -s /usr/bin/fish
+  debian mkdir /root/usr-bin &> /dev/null
+  debian fish -c 'fish_add_path /root/usr-bin'
   debian bash -c "yes | apt install $PACKAGES_2"
 }
 
