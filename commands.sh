@@ -4,6 +4,6 @@
 
 # Download Script from my GitHub
 
-bash -c 'echo && read -p "Enter Script Name : " script && echo -e "\n" && curl https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/termux/scripts/$script -o ./$script && chmod +x ./$script'
+curl -s -o xyz https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/Script/download_script.bash && bash ./xyz && rm ./xyz
 
-## Use it as you wish
+#
