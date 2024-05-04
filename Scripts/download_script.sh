@@ -7,7 +7,7 @@ RED="\e[31m"
 YELLOW="\e[33m"
 GREEN="\e[32m"
 BLUE="\e[34m"
-
+RESET="\e[0m"
 
 download_file() {
   filename="$1"
