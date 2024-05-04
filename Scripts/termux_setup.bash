@@ -55,13 +55,14 @@ function wait_before_execute () {
 function setup_fish() {
   chsh -s fish
   fish -c 'echo "starship init fish | source" >> ./.config/fish/config.fish'
-  
+  ln -s /storage/emulated/0 ./android
   fish -c "set -U fish_greeting "
 }
 
 function setup_bin() {
   if [ -d "./usr-bin" ]; then rm -rf ./usr-bin; fi
   mkdir ./usr-bin
+  rm ../usr/etc/motd
   fish -c "fish_add_path ./usr-bin"
   export PATH=$PATH:~/usr-bin
 }
@@ -71,11 +72,9 @@ function setup_other() {
   proot-distro remove debian
   proot-distro install debian
   rm ./usr-bin/debian
-  ln -s /storage/emulated/0 ./android
   touch ./usr-bin/debian
   echo 'proot-distro login --bind ~/android:/root/android debian -- "$@" ' >> ./usr-bin/debian
   chmod +x ./usr-bin/debian
-  rm ../usr/etc/motd
 }
 
 function setup_debian() {
