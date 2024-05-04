@@ -2,7 +2,7 @@
 
 ### VARIABLE ###
 PWD=$(pwd)
-COUNTDOWN=5
+COUNTDOWN=10
 PACKAGES_1="fish starship proot-distro wget curl"
 PACKAGES_2="python3 python3-pip"
 
