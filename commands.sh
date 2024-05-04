@@ -4,6 +4,6 @@
 
 # Download Script from my GitHub
 
-curl -s -o xyz https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/Scripts/download_script.bash && bash ./xyz && rm ./xyz
+bash <(curl -s https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/Scripts/download_script.bash)
 
 #
