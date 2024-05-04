@@ -69,9 +69,9 @@ function setup_bin() {
 
 
 function setup_other() {
-  proot-distro remove debian
+  proot-distro remove debian &> /dev/null
   proot-distro install debian
-  rm ./usr-bin/debian
+  if [ -f "./usr-bin/debian" ]; then rm ./usr-bin/debian; fi
   touch ./usr-bin/debian
   echo 'proot-distro login --bind ~/android:/root/android debian -- "$@" ' >> ./usr-bin/debian
   chmod +x ./usr-bin/debian
