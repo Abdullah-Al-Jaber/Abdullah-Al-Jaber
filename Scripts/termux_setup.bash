@@ -61,8 +61,8 @@ function setup_fish() {
 }
 
 function setup_bin() {
-  if [ -d "./usr-bin" ]; then rm -rf ./usr-bin; fi
-  mkdir ./usr-bin
+  #if [ -d "./usr-bin" ]; then rm -rf ./usr-bin; fi
+  mkdir ./usr-bin &> /dev/null
   rm ../usr/etc/motd &> /dev/null
   fish -c "fish_add_path ./usr-bin"
   export PATH=$PATH:~/usr-bin
