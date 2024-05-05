@@ -9,7 +9,7 @@ GREEN="\e[32m"
 BLUE="\e[34m"
 RESET="\e[0m"
 
-BUFFER="hellou"
+BUFFER="termux_setup.bash"
 
 download_file() {
   filename="$1"
