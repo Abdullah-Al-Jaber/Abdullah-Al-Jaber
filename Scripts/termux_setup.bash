@@ -18,6 +18,7 @@ SPECIAL_COLOR="\e[37m"
 TITLE="$SPECIAL_COLOR$BOLD"
 RESET="\e[0m"
 
+clear
 echo -e "$TITLE\n# Termux Setup Script #\n$RESET"
 
 ## FUNCTIONS
