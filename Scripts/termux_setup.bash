@@ -1,48 +1,109 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 
-### Variable ###
+### VARIABLE ###
 PWD=$(pwd)
-URL_PREFIX="https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/Scripts"
-RED="\e[31m"
-YELLOW="\e[33m"
+COUNTDOWN=10
+PACKAGES_1="fish starship proot-distro wget"
+PACKAGES_2="python3 python3-pip"
+
+# Styles 
+BOLD="\e[1m"
+
 GREEN="\e[32m"
+YELLOW="\e[33m"
 BLUE="\e[34m"
+
+SPECIAL_COLOR="\e[37m"
+
+TITLE="$SPECIAL_COLOR$BOLD"
 RESET="\e[0m"
 
-BUFFER="hellou"
+echo -e "$TITLE\n# Termux Setup Script #\n$RESET"
 
-download_file() {
-  filename="$1"
-  url="${URL_PREFIX}/${filename}"
-  path="${PWD}/${filename}"
+## FUNCTIONS
+# function silent_log() {
+#   eval "yes | $1" &>> "$LOG_PATH/$2.log"
+# }
 
-  if [ -f "${path}" ]; then
-    echo -e "${YELLOW}File ${filename} already exists.${RESET}"
-    echo -e "${RED}Removing it !${RESET}"
-    rm "${path}"
-  fi
-
-  # check if input given 
-  if [ -z "$1" ]; then
-    echo
-    read -e -i "$BUFFER" -p "[34mPlease input script name : [0m" filename
-    BUFFER=$filename
-    download_file "${filename}"
-    return
-  fi
-
-  echo -e "${YELLOW}Downloading ($BLUE${url}$RESET$YELLOW)${RESET}"
-  code=$(curl -sL -w "%{http_code}\n"  -o "${path}" "${url}")
-
-  if [[ $code -ne 200 ]]; then 
-    echo -e "${RED}Failed to download (${filename}) ! ${RESET}"
-    rm "${path}"
-    download_file
-    return
-  fi 
-
-  echo -e "${GREEN}Download complete !${RESET}"
+function update_pkg() {
+  yes | apt update
+  yes | pkg upgrade
 }
 
-download_file
-chmod +x "$path"
+function wait_before_execute () {
+  count=$COUNTDOWN
+  
+  echo 
+  while [ $count -gt -1 ]; do
+    # read -t 1 -p "[ $YELLOW$BOLD$count$RESET ] $2"
+    echo -ne "[ $YELLOW$BOLD$count$RESET ] $BLUE$2$RESET"
+    read -r -t 1
+    
+    if [ $? -eq 0 ]; then
+      echo -ne "${YELLOW}[ Skipped execution ]${RESET}"
+      echo 
+      return
+    fi
+    count=$((count-1))
+    echo -ne "\r"
+  done
+  echo
+  
+  eval "$1"
+}
+
+function setup_fish() {
+  chsh -s fish
+  fish -c 'echo "starship init fish | source" >> ./.config/fish/config.fish'
+  ln -s /storage/emulated/0 ./android &> /dev/null
+  fish -c "set -U fish_greeting "
+}
+
+function setup_bin() {
+  if [ -d "./usr-bin" ]; then rm -rf ./usr-bin; fi
+  mkdir ./usr-bin
+  rm ../usr/etc/motd &> /dev/null
+  fish -c "fish_add_path ./usr-bin"
+  export PATH=$PATH:~/usr-bin
+}
+
+
+function setup_other() {
+  proot-distro remove debian &> /dev/null
+  proot-distro install debian
+  if [ -f "./usr-bin/debian" ]; then rm ./usr-bin/debian; fi
+  touch ./usr-bin/debian
+  echo 'proot-distro login --bind ~/android:/root/android debian -- "$@" ' >> ./usr-bin/debian
+  chmod +x ./usr-bin/debian
+}
+
+function setup_debian() {
+
+  debian sed -i 's/^/#/' /etc/apt/sources.list
+  debian bash -c 'echo deb [signed-by="/usr/share/keyrings/debian-archive-keyring.gpg"] http://deb.debian.org/debian testing main contrib non-free >> /etc/apt/sources.list'
+  debian apt clean
+  debian apt update
+  debian bash -c "yes | apt upgrade"
+  debian bash -c "yes | apt install fish"
+  debian bash -c "yes | apt autoremove"
+  debian fish -c 'set -U fish_greeting -e "\nWelcome to Debian (testing)\n"'
+  debian chsh -s /usr/bin/fish
+  debian mkdir /root/usr-bin &> /dev/null
+  debian fish -c 'fish_add_path /root/usr-bin'
+  debian bash -c "yes | apt install $PACKAGES_2"
+}
+
+## MAIN CODE
+cd ~ || exit
+echo -e "$YELLOW( Press enter to skip any step )$RESET"
+wait_before_execute "update_pkg" "Update &  Upgrade Packages"
+wait_before_execute "yes | pkg install $PACKAGES_1" "Installing Additional Packages"
+
+wait_before_execute "setup_fish" "Setting up Fish Shell"
+wait_before_execute "setup_bin" "Setting up User Bin Folder"
+
+wait_before_execute "setup_other" "Install New Debian System "
+wait_before_execute "setup_debian" "Setting Up New Debian System"
+cd "${PWD}" || exit
+
+echo -e "\n# $GREEN $BOLD Finished Setup $RESET #\n"
