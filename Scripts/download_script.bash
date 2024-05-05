@@ -26,8 +26,8 @@ download_file() {
   if [ -z "$1" ]; then
     echo
     echo -ne "${BLUE}Please input the file name to download${RESET} : "
-    read -i "$BUFFER" -r filename
-    #BUFFER='$filename'
+    read -e -i "$BUFFER" -r filename
+    BUFFER='$filename'
     download_file "${filename}"
     return
   fi
