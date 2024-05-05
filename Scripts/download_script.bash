@@ -27,7 +27,7 @@ download_file() {
     echo
     echo -ne "${BLUE}Please input the file name to download${RESET} : "
     read -i $BUFFER filename
-    BUFFER=$filename
+    BUFFER='$filename'
     download_file "${filename}"
     return
   fi
