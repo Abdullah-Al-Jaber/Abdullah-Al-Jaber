@@ -9,6 +9,8 @@ GREEN="\e[32m"
 BLUE="\e[34m"
 RESET="\e[0m"
 
+BUFFER=""
+
 download_file() {
   filename="$1"
   url="${URL_PREFIX}/${filename}"
@@ -24,7 +26,7 @@ download_file() {
   if [ -z "$1" ]; then
     echo
     echo -ne "${BLUE}Please input the file name to download${RESET} : "
-    read -c -r filename
+    read -i $BUFFER filename
     download_file "${filename}"
     return
   fi
