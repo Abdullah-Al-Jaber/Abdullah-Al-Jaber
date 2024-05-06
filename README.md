@@ -1,9 +1,8 @@
-### **_Hi there 👋_**
+## Mega Crab Ultimate ###
+(free for everyone)
 
-This is my personal repo for "random things i would like to upload".
-
-Darker 6.0.0 modded for pro version
-(pro version unlocked)
+### Mods of Apk :
+1. Darker 6.0.0 (pro version unlocked)
 
 
 
