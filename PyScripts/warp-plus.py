@@ -102,7 +102,7 @@ def send_request():
     else:
       print(f"{error_sign} Failed to send request (server) !")
       print(f"{error_sign} Status code : {response.status_code}")
-      print(f"\n{bold}[ Response ]{reset}\n{response.text}")
+      print(f"\n{bold}[ Response ]{reset}\n{response.text}\n")
       data["bad_request"] += 1
 
   except Exception as error:
@@ -163,6 +163,7 @@ def run(code):
       print(f"{info_sign} Current ID : {data['referrer']}")
       print(f"{info_sign} Good Requests : {data['good_request']}")
       print(f"{info_sign} Bad Requests : {data['bad_request']}")
+      print(f"\n{yellow} Total : {bold}{data['good_request']} GB {reset}")
       print("\n------------\n")
       print(f"{info_sign} Sending Request to Server ...")
       send_request()
