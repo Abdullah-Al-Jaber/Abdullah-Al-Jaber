@@ -4,7 +4,7 @@
 PWD=$(pwd)
 COUNTDOWN=10
 PACKAGES_1="fish starship proot-distro wget"
-PACKAGES_2="python3 python3-pip"
+PACKAGES_2="python3 starship python3-pip python3-full"
 
 # Styles 
 BOLD="\e[1m"
@@ -84,11 +84,15 @@ function setup_debian() {
   debian bash -c "yes | apt install fish"
   debian bash -c "yes | apt autoremove"
   debian echo 'starship init fish | source' >> ~/.config/fish/config.fish
+  debian starship preset bracketed-segments -o ~/.config/starship.toml
   debian fish -c 'set -U fish_greeting'
   debian chsh -s /usr/bin/fish
   debian mkdir /root/usr-bin &> /dev/null
   debian fish -c 'fish_add_path /root/usr-bin'
   debian bash -c "yes | apt install $PACKAGES_2"
+  debian python3 -m venv .[pyenv]
+  debian echo 'source ~/.[pyenv]/bin/activate.fish' >> ~/.config/fish/config.fish
+
 }
 
 ## MAIN CODE
