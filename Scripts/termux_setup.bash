@@ -79,15 +79,12 @@ function setup_other() {
 }
 
 function setup_debian() {
-
-  debian sed -i 's/^/#/' /etc/apt/sources.list
-  debian bash -c 'echo deb [signed-by="/usr/share/keyrings/debian-archive-keyring.gpg"] http://deb.debian.org/debian testing main contrib non-free >> /etc/apt/sources.list'
-  debian apt clean
   debian apt update
   debian bash -c "yes | apt upgrade"
   debian bash -c "yes | apt install fish"
   debian bash -c "yes | apt autoremove"
-  debian fish -c 'set -U fish_greeting -e "\nWelcome to Debian (testing)\n"'
+  debian echo 'starship init fish | source' >> ~/.config/fish/config.fish
+  debian fish -c 'set -U fish_greeting'
   debian chsh -s /usr/bin/fish
   debian mkdir /root/usr-bin &> /dev/null
   debian fish -c 'fish_add_path /root/usr-bin'
