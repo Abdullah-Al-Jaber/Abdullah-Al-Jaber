@@ -6,5 +6,5 @@ yes | pkg upgrade
 
 pkg install python curl
 
-curl "https://guthub.vom/termux-setup.py" >> termux-setup.py
+curl -s -H "Cache-Control: no-cache" https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/scripts/python/termux-setup.py > termux-setup.py
 python termux-setup.py
