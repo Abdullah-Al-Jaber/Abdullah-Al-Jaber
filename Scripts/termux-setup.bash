@@ -1,5 +1,6 @@
-# bash script for termux setup
+#!/data/data/com.termux/files/usr/bin/bash
 
+# bash script for termux setup
 yes | pkg update
 yes | pkg upgrade
 
