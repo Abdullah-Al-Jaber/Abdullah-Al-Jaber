@@ -130,6 +130,8 @@ def termux_setup_fish_and_starship():
   termux_command("chsh -s fish")
   termux_command("fish -c 'set -U fish_greeting'")
   termux_command("mkdir ~/usr-bin")
+  termux_command("echo 'export $PATH=$PATH:~/usr-bin' >> ~/.bashrc")
+  termux_command("export $PATH=$PATH:~/usr-bin")
   termux_command("fish -c 'fish_add_path ~/usr-bin'")
   termux_command("export PATH=$PATH:~/usr-bin")
   termux_command(
@@ -147,7 +149,7 @@ def termux_install_debian():
   global debian_shell
   termux_install_packages("proot-distro")
   termux_command("proot-distro remove debian", show_error=False)
-  termux_command("proot-distro install debian")
+  termux_command("proot-distro install debian", show_output=False)
   login_code = 'proot-distro login --bind ~/android:/root/android debian -- "$@"'
   termux_command(f"echo '{login_code}' > ~/usr-bin/debian")
   termux_command("chmod +x ~/usr-bin/debian")
