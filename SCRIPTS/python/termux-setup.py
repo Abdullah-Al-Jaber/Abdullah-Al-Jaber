@@ -30,20 +30,21 @@ console.print(title_panel, justify="center")
 
 success_tag = "[bold green][SUCCESS][/]"
 error_tag = "[bold red][ERROR][/]"
+output_tag = "[bold blue][OUTPUT][/]"
 debian_shell = None
 
 
-def termux_command(command: str, show_output=False, show_error=False):
+def termux_command(command: str, show_output=True, show_error=True):
   result = subprocess.run(command, shell=True, capture_output=True)
   output = result.stdout.decode('utf-8').strip()
   error = result.stderr.decode('utf-8').strip()
   return_code = result.returncode
 
   if show_output and output:
-    console.print(output)
+    console.print(output_tag, output)
 
   if show_error and error:
-    console.print(error)
+    console.print(error_tag, error)
 
   if return_code != 0 and show_error:
     console.print(error_tag, "Failed to execute command !")
@@ -52,7 +53,7 @@ def termux_command(command: str, show_output=False, show_error=False):
     input()
 
 
-def debian_command(command: str, show_output=False, show_error=False):
+def debian_command(command: str, show_output=True, show_error=True):
   global debian_shell
   if not debian_shell:
     return
@@ -69,10 +70,10 @@ def debian_command(command: str, show_output=False, show_error=False):
   error = result[1].decode('utf-8').strip()
 
   if show_output and output:
-    console.print(output)
+    console.print(output_tag, output)
 
   if show_error and error:
-    console.print(error)
+    console.print(error_tag, error)
 
   return_code = debian_shell.returncode
 
@@ -83,11 +84,11 @@ def debian_command(command: str, show_output=False, show_error=False):
     input()
 
 
-def termux_install_packages(packages: str, show_output=False):
+def termux_install_packages(packages: str, show_output=True):
   termux_command(f"yes | pkg install {packages}", show_output)
 
 
-def debian_install_packages(packages: str, show_output=False):
+def debian_install_packages(packages: str, show_output=True):
   debian_command(f"yes | apt install {packages}", show_output)
 
 
@@ -195,7 +196,7 @@ for index, function in enumerate(map):
 console.line()
 skip_code = Prompt.ask("[bold]SKIP EXECUTION[/]", default="NONE")
 
-run_list = [function["function"] for function in map]
+run_list = list(range(len(map)))
 
 if skip_code != "NONE":
   skip_codes = skip_code.split(" ")
@@ -209,14 +210,17 @@ if skip_code != "NONE":
       code = int(code)
 
     if 1 <= code <= len(map):
-      run_list.remove(map[code - 1]['function'])
+      run_list.remove(code - 1)
     else:
       console.print(error_tag, f"Invalid code: {code}")
       sys.exit(1)
 
 start_time = time.time()
-for function in run_list:
-  function()
+for index in run_list:
+  function = map[index]
+  console.print(
+      f"\n[bold blue]#{index + 1}[/] {function['title'].strip()} [running]")
+  function['function']()
 end_time = time.time()
 
 duration = end_time - start_time
