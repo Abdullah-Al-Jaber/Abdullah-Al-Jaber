@@ -1,4 +1,3 @@
-
 # built-in modules
 import os
 import sys
@@ -34,17 +33,17 @@ error_tag = "[bold red][ERROR][/]"
 debian_shell = None
 
 
-def termux_command(command: str, show_output=True, show_error=True):
+def termux_command(command: str, show_output=False, show_error=False):
   result = subprocess.run(command, shell=True, capture_output=True)
-  output = result.stdout.decode('utf-8')
-  error = result.stderr.decode('utf-8')
+  output = result.stdout.decode('utf-8').strip()
+  error = result.stderr.decode('utf-8').strip()
   return_code = result.returncode
 
-  if show_output:
-    print(output)
+  if show_output and output:
+    console.print(output)
 
-  if show_error:
-    print(error)
+  if show_error and error:
+    console.print(error)
 
   if return_code != 0 and show_error:
     console.print(error_tag, "Failed to execute command !")
@@ -53,25 +52,27 @@ def termux_command(command: str, show_output=True, show_error=True):
     input()
 
 
-def debian_command(command: str, show_output=True, show_error=True):
+def debian_command(command: str, show_output=False, show_error=False):
   global debian_shell
   if not debian_shell:
     return
 
-  if not isinstance(debian_shell, subprocess.Popen):
-    debian_shell = subprocess.Popen("debian",
-                                    shell=True,
-                                    stdin=subprocess.PIPE,
-                                    stdout=subprocess.PIPE,
-                                    stderr=subprocess.PIPE)
+  #if not isinstance(debian_shell, subprocess.Popen):
+  debian_shell = subprocess.Popen("debian",
+                                  shell=True,
+                                  stdin=subprocess.PIPE,
+                                  stdout=subprocess.PIPE,
+                                  stderr=subprocess.PIPE)
 
-  result = debian_shell.communicate(command.encode())
+  result = debian_shell.communicate(input=command.encode())
+  output = result[0].decode('utf-8').strip()
+  error = result[1].decode('utf-8').strip()
 
-  if show_output:
-    print(result[0].decode('utf-8'))
+  if show_output and output:
+    console.print(output)
 
-  if show_error:
-    print(result[1].decode('utf-8'))
+  if show_error and error:
+    console.print(error)
 
   return_code = debian_shell.returncode
 
