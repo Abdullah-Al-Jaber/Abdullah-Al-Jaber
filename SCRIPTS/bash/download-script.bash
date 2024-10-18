@@ -2,7 +2,7 @@
 
 ### Variable ###
 PWD=$(pwd)
-URL_PREFIX="https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/Scripts"
+URL_PREFIX="https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/SCRIPTS/bash"
 RED="\e[31m"
 YELLOW="\e[33m"
 GREEN="\e[32m"
