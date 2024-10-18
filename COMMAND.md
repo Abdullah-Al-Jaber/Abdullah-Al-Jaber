@@ -1,11 +1,8 @@
- data/com.termux/files/usr/bin/bash
+## Shortcut Code (Copy&Paste)
 
-## Commands to copy & paste
-
-# Download Script from my GitHub
-
+Download setup script for termux:
 ``` BASH
 bash -c 'bash <(curl -s -H "Cache-Control: no-cache" https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/Scripts/download_script.bash)'
 ```
 
-#
+
