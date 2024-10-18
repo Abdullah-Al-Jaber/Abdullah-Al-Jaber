@@ -2,7 +2,7 @@
 yes | pkg update
 yes | pkg upgrade
 
-pkg install python curl
+yes | pkg install python pip
 
-curl -s -H "Cache-Control: no-cache" https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/SCRIPTS/python/termux-setup.py > termux-setup.py
+curl -s https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/SCRIPTS/python/termux-setup.py > termux-setup.py
 python termux-setup.py
