@@ -135,7 +135,7 @@ def termux_package_install():
 
 def termux_setup_fish_and_starship():
   """Setup Fish & Starship (termux)"""
-  termux_install_packages("fish starship" + " " + "oh-my-fish")
+  termux_install_packages("fish starship")
   termux_command("chsh -s fish")
   termux_command("set -U fish_greeting")
   termux_command("mkdir ~/usr-bin")
