@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash
+ data/com.termux/files/usr/bin/bash
 
 ## Commands to copy & paste
 
