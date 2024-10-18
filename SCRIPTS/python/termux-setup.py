@@ -40,6 +40,7 @@ def termux_command(command: str, show_output=True, show_error=True):
   error = result.stderr.decode('utf-8').strip()
   return_code = result.returncode
 
+  console.print(f"[bold magenta][TER][{command}][/]")
   if show_output and output:
     console.print(output_tag, output)
 
@@ -69,11 +70,12 @@ def debian_command(command: str, show_output=True, show_error=True):
   output = result[0].decode('utf-8').strip()
   error = result[1].decode('utf-8').strip()
 
+  console.print(f"[bold magenta][DEB][{command}][/]")
   if show_output and output:
     console.print(output_tag, output)
 
   if show_error and error:
-    console.print(error_tag, error)
+    console.print(error_tag, f"[bold]{error}[/]")
 
   return_code = debian_shell.returncode
 
@@ -218,8 +220,9 @@ if skip_code != "NONE":
 start_time = time.time()
 for index in run_list:
   function = map[index]
+  console.line()
   console.print(
-      f"\n[bold blue]#{index + 1}[/] {function['title'].strip()} [running]")
+      f"\n[bold blue][#{index + 1}][/] {function['title'].strip()} [bold cyan][RUNNING][/]")
   function['function']()
 end_time = time.time()
 
