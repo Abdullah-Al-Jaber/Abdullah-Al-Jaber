@@ -40,12 +40,19 @@ def remove_line_gaps(text: str):
   return "\n".join(lines)
 
 
-def termux_command(command: str, show_output=True, show_error=True):
+def termux_command(command: str,
+                   show_output=True,
+                   show_error=True,
+                   shell="fish"):
   console.print(f"[bold magenta][TERMUX][/] {command}")
-  result = subprocess.run(command, shell=True, capture_output=True, text=True)
-  output = result.stdout
-  error = result.stderr
-  return_code = result.returncode
+  shell = subprocess.Popen(shell,
+                           stdout=subprocess.PIPE,
+                           stderr=subprocess.PIPE,
+                           text=True)
+  result = shell.communicate(input=command)
+  output = result[0]
+  error = result[1]
+  return_code = shell.returncode
 
   output = remove_line_gaps(output)
   error = remove_line_gaps(error)
@@ -98,7 +105,7 @@ def debian_command(command: str, show_output=True, show_error=True):
 
 
 def termux_install_packages(packages: str, show_output=True):
-  termux_command(f"yes | pkg install {packages}", show_output)
+  termux_command(f"yes | pkg install {packages}", show_output, shell="bash")
 
 
 def debian_install_packages(packages: str, show_output=True):
@@ -115,8 +122,8 @@ old_functions = [
 
 def termux_package_update_and_upgrade():
   """Update & Upgrade termux packages"""
-  termux_command("yes | pkg update")
-  termux_command("yes | pkg upgrade")
+  termux_command("yes | pkg update", shell="bash")
+  termux_command("yes | pkg upgrade", shell="bash")
 
 
 def termux_package_install():
@@ -126,14 +133,11 @@ def termux_package_install():
 
 def termux_setup_fish_and_starship():
   """Setup Fish & Starship (termux)"""
-  termux_install_packages("fish starship")
+  termux_install_packages("fish starship" + " " + "oh-my-fish")
   termux_command("chsh -s fish")
-  termux_command("fish -c 'set -U fish_greeting'")
+  termux_command("set -U fish_greeting")
   termux_command("mkdir ~/usr-bin")
-  termux_command("echo 'export $PATH=$PATH:~/usr-bin' >> ~/.bashrc")
-  termux_command("export $PATH=$PATH:~/usr-bin")
-  termux_command("fish -c 'fish_add_path ~/usr-bin'")
-  termux_command("export PATH=$PATH:~/usr-bin")
+  termux_command("fish_add_path ~/usr-bin")
   termux_command(
       "echo 'starship init fish | source' >> ~/.config/fish/config.fish")
   termux_command("mv ~/../usr/etc/motd ~/.motd")
