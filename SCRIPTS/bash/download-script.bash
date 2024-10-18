@@ -25,7 +25,7 @@ download_file() {
   # check if input given 
   if [ -z "$1" ]; then
     echo
-    read -e -i "$BUFFER" -p "$BLUE [BASH SCRIPT NAME]: $RESET" filename
+    read -e -i "$BUFFER" -p "[34m [BASH SCRIPT NAME]: [0m" filename
     BUFFER=$filename
     download_file "${filename}"
     return
