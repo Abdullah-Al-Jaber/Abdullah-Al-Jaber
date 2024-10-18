@@ -1,4 +1,4 @@
-## Shortcut Code (Copy&Paste)
+## Shortcut Code
 
 Download setup script for termux:
 ``` BASH
