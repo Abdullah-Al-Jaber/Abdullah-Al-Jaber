@@ -1,8 +1,8 @@
 ## Shortcut Code
 
-Download setup script for termux:
+Download **BASH** scripts:
 ``` BASH
-bash -c 'bash <(curl -s -H "Cache-Control: no-cache" https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/Scripts/download_script.bash)'
+bash -c 'bash <(curl -s -H "Cache-Control: no-cache" https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/scripts/bash/download_script.bash)'
 ```
 
 
