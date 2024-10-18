@@ -35,8 +35,6 @@ debian_shell = None
 
 
 def termux_command(command: str, show_output=True, show_error=True):
-  print(command)
-  return
   result = subprocess.run(command, shell=True, capture_output=True)
   output = result.stdout.decode('utf-8')
   error = result.stderr.decode('utf-8')
@@ -59,9 +57,6 @@ def debian_command(command: str, show_output=True, show_error=True):
   global debian_shell
   if not debian_shell:
     return
-
-  print("debin", command)
-  return
 
   if not isinstance(debian_shell, subprocess.Popen):
     debian_shell = subprocess.Popen("debian",
