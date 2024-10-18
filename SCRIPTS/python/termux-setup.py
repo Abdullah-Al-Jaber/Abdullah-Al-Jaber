@@ -46,6 +46,8 @@ def termux_command(command: str,
                    shell="fish"):
   console.print(f"[bold magenta][TERMUX][/] {command}")
   shell = subprocess.Popen(shell,
+                           shell=True,
+                           stdin=subprocess.PIPE,
                            stdout=subprocess.PIPE,
                            stderr=subprocess.PIPE,
                            text=True)
