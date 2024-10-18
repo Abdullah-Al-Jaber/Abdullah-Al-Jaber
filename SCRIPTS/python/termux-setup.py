@@ -34,13 +34,21 @@ output_tag = "[bold blue][OUTPUT][/]"
 debian_shell = None
 
 
+def remove_line_gaps(text: str):
+  lines = text.split("\n")
+  lines = [line.strip() for line in lines if line]
+  return "\n".join(lines)
+
+
 def termux_command(command: str, show_output=True, show_error=True):
-  result = subprocess.run(command, shell=True, capture_output=True)
-  output = result.stdout.decode('utf-8').strip()
-  error = result.stderr.decode('utf-8').strip()
+  console.print(f"[bold magenta][TERMUX][/] {command}")
+  result = subprocess.run(command, shell=True, capture_output=True, text=True)
+  output = result.stdout
+  error = result.stderr
   return_code = result.returncode
 
-  console.print(f"[bold magenta][TER][/][{command}]")
+  output = remove_line_gaps(output)
+  error = remove_line_gaps(error)
   if show_output and output:
     console.print(output_tag, output)
 
@@ -64,18 +72,21 @@ def debian_command(command: str, show_output=True, show_error=True):
                                   shell=True,
                                   stdin=subprocess.PIPE,
                                   stdout=subprocess.PIPE,
-                                  stderr=subprocess.PIPE)
+                                  stderr=subprocess.PIPE,
+                                  text=True)
+  console.print(f"[bold magenta][DEBIAN][/] {command}")
+  result = debian_shell.communicate(input=command)
+  output = result[0]
+  error = result[1]
 
-  result = debian_shell.communicate(input=command.encode())
-  output = result[0].decode('utf-8').strip()
-  error = result[1].decode('utf-8').strip()
+  output = remove_line_gaps(output)
+  error = remove_line_gaps(error)
 
-  console.print(f"[bold magenta][DEB][/][{command}]")
   if show_output and output:
     console.print(output_tag, output)
 
   if show_error and error:
-    console.print(error_tag, f"[bold]{error}[/]")
+    console.print(error_tag, error)
 
   return_code = debian_shell.returncode
 
@@ -220,9 +231,9 @@ if skip_code != "NONE":
 start_time = time.time()
 for index in run_list:
   function = map[index]
-  console.line()
   console.print(
-      f"\n[bold blue][#{index + 1}][/] {function['title'].strip()} [bold cyan][RUNNING][/]")
+      f"\n[bold blue]#{index + 1}[/] {function['title']} [bold cyan][RUNNING][/]"
+  )
   function['function']()
 end_time = time.time()
 
