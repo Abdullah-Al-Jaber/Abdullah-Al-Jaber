@@ -77,12 +77,13 @@ def debian_command(command: str, show_output=True, show_error=True):
     return
 
   #if not isinstance(debian_shell, subprocess.Popen):
-  debian_shell = subprocess.Popen("debian",
-                                  shell=True,
-                                  stdin=subprocess.PIPE,
-                                  stdout=subprocess.PIPE,
-                                  stderr=subprocess.PIPE,
-                                  text=True)
+  debian_shell = subprocess.Popen(
+      'proot-distro login --bind ~/android:/root/android debian',
+      shell=True,
+      stdin=subprocess.PIPE,
+      stdout=subprocess.PIPE,
+      stderr=subprocess.PIPE,
+      text=True)
   console.print(f"[bold magenta][DEBIAN][/] {command}")
   result = debian_shell.communicate(input=command)
   output = result[0]
