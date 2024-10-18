@@ -9,7 +9,7 @@ GREEN="\e[32m"
 BLUE="\e[34m"
 RESET="\e[0m"
 
-BUFFER="termux_setup.bash"
+BUFFER="termux-setup.bash"
 
 download_file() {
   filename="$1"
@@ -25,7 +25,7 @@ download_file() {
   # check if input given 
   if [ -z "$1" ]; then
     echo
-    read -e -i "$BUFFER" -p "[34mPlease input script name : [0m" filename
+    read -e -i "$BUFFER" -p "[34m [BASH SCRIPT NAME]: [0m" filename
     BUFFER=$filename
     download_file "${filename}"
     return
