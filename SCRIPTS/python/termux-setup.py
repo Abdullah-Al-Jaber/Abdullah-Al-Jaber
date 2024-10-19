@@ -180,7 +180,7 @@ def debian_setup_fish_and_starship():
   """Setup Fish & Starship (debian)"""
   debian_install_packages("fish")
   debian_command("curl -sS https://starship.rs/install.sh > tmp.sh")
-  debian_command("sh tmp.sh -y")
+  debian_command("sh tmp.sh -y", show_output=False)
   debian_command("rm tmp.sh")
   debian_command("chsh -s /usr/bin/fish")
   debian_command("set -U fish_greeting")
