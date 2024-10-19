@@ -2,7 +2,7 @@
 
 ### Variable ###
 PWD=$(pwd)
-URL_PREFIX="https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/SCRIPTS/bash"
+URL_PREFIX="https://raw.githubusercontent.com/abdullah-al-jaber/abdullah-al-jaber/vanilla/SCRIPTS/python"
 RED="\e[31m"
 YELLOW="\e[33m"
 GREEN="\e[32m"
