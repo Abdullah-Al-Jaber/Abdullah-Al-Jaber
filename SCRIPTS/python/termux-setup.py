@@ -80,7 +80,7 @@ def debian_command(command: str, show_output=True, show_error=True):
   # first login into fish then into Debian shell from there 
   
   debian_shell = subprocess.Popen(
-      ["fish", "debian"],
+      "fish -c 'debian'",
       shell=True,
       stdin=subprocess.PIPE,
       stdout=subprocess.PIPE,
