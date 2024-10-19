@@ -71,7 +71,7 @@ def termux_command(command: str,
     input()
 
 
-def debian_command(command: str, show_output=True, show_error=True):
+def debian_command(command: str, show_output=True, show_error=False):
   global debian_shell
   if not debian_shell:
     return
