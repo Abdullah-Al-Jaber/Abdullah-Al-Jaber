@@ -114,7 +114,7 @@ def termux_install_packages(packages: str, show_output=True):
 
 
 def debian_install_packages(packages: str, show_output=True):
-  debian_command(f"yes | apt install {packages}", show_output)
+  debian_command(f"yes | apt-get install {packages}", show_output)
 
 
 ## list all functions in this script
