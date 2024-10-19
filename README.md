@@ -1,2 +1,4 @@
 ### Hello, EVERYONE !
-I am experienced in web development. But currently working on android (literally). I have some projects that is mainly based on hybrid between android and web. You can check it out if you want. Thanks.
+I am experienced in **Web Development**. But currently working on **Android Apps**. I have some projects those are mainly hybrids between android and web. You can check it out if you want.
+
+*I also do occasional **Python** scripting.*
