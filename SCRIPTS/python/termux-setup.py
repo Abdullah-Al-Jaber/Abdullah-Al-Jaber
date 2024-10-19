@@ -157,8 +157,8 @@ def termux_install_debian():
   """Install Debian (termux)"""
   global debian_shell
   termux_install_packages("proot-distro")
-  termux_command("proot-distro remove debian", show_error=False)
-  termux_command("proot-distro install debian", show_output=False)
+  termux_command("proot-distro remove debian", show_output=False, show_error=False)
+  termux_command("proot-distro install debian", show_output=False, show_error=False)
   login_code = 'proot-distro login --bind ~/android:/root/android debian -- "$@"'
   termux_command(f"echo '{login_code}' > ~/usr-bin/debian")
   termux_command("chmod +x ~/usr-bin/debian")
