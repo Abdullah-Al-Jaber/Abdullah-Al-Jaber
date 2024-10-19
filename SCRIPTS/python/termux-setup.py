@@ -77,8 +77,10 @@ def debian_command(command: str, show_output=True, show_error=True):
     return
 
   #if not isinstance(debian_shell, subprocess.Popen):
+  # first login into fish then into Debian shell from there 
+  
   debian_shell = subprocess.Popen(
-      'proot-distro login --bind ~/android:/root/android debian',
+      ["fish", "debian"],
       shell=True,
       stdin=subprocess.PIPE,
       stdout=subprocess.PIPE,
@@ -155,8 +157,8 @@ def termux_install_debian():
   """Install Debian (termux)"""
   global debian_shell
   termux_install_packages("proot-distro")
-  termux_command("proot-distro remove debian", show_output=False, show_error=False)
-  termux_command("proot-distro install debian", show_output=False, show_error=False)
+  termux_command("proot-distro remove debian", show_error=False)
+  termux_command("proot-distro install debian", show_output=False)
   login_code = 'proot-distro login --bind ~/android:/root/android debian -- "$@"'
   termux_command(f"echo '{login_code}' > ~/usr-bin/debian")
   termux_command("chmod +x ~/usr-bin/debian")
@@ -178,12 +180,12 @@ def debian_setup_fish_and_starship():
   """Setup Fish & Starship (debian)"""
   debian_install_packages("fish")
   debian_command("curl -sS https://starship.rs/install.sh > tmp.sh")
-  debian_command("yes | bash tmp.sh")
+  debian_command("bash -c 'yes | sh tmp.sh'")
   debian_command("rm tmp.sh")
   debian_command("chsh -s /usr/bin/fish")
-  debian_command("fish -c 'set -U fish_greeting'")
+  debian_command("set -U fish_greeting")
   debian_command("mkdir ~/usr-bin")
-  debian_command("fish -c 'fish_add_path ~/usr-bin'")
+  debian_command("fish_add_path ~/usr-bin")
   debian_command(
       "echo 'starship init fish | source' >> ~/.config/fish/config.fish")
   debian_command(
