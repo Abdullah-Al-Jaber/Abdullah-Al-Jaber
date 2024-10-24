@@ -173,7 +173,7 @@ def debian_package_update_and_upgrade():
 
 def debian_package_install():
   """Install debian packages"""
-  debian_install_packages("")
+  debian_install_packages("command-not-found")
 
 
 def debian_setup_fish_and_starship():
